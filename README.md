@@ -15,10 +15,10 @@
 
 I was confident that I could develop high performance apps using Android architecture components and Kotlin Coroutine and Flow without using LiveData and RxJava, RxKotlin about a couple of months ago. And I proved it.
 
-Now let’s dive into my open-source project, LukohSplash, which is based on the Android MVVM with Clean Architecture and the latest libraries like Jetpack.
+Now let’s dive into my open-source project, AdvancedAppArchitecture, which is based on LukohSplash & the Android MVVM with Clean Architecture and the latest libraries like Jetpack.
 And I'm learning Jetpack Compose and will apply it to LukohSplash. 
 
-Please refer to [LukohSplash](https://github.com/Lukoh/LukohSplash)
+Please refer to [LukohSplash](https://github.com/Lukoh/LukohSplash) & [Better Android Apps Using latest advanced Architecture](https://medium.com/oheadline/better-android-apps-using-mvvm-with-clean-architecture-2cc49e68f41d) & [How to focus effective business logic & implement more expandable & simplify modules & reduce the boiler-plate code using the Module-Pattern to make Android App.](https://medium.com/@lukohnam/how-to-focus-effective-business-logic-implement-more-expandable-simplify-modules-reduce-the-81ae1af23e4e)
 
 Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into LukohSplash. Also visit my [LinkedIn profile](https://www.linkedin.com/in/lukoh-nam-68207941/?senderId=lukoh-nam-68207941) if you want to know more about me. Here is my email address below:
 
