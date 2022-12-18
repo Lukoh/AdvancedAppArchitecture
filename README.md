@@ -23,7 +23,7 @@ Please refer to [How to share/communicate events (independent data) across app c
 
 Typically, the UI layer contains UI-related state and UI business logic. UI business logic is what gives your app value and the role of the UI is to display the application data on the screen and also to serve as the primary point of user interaction. Separating UI business logic from UI simplifies relationships and allows business logic to be reproduced outside of the UI for unit-testing.
 
-Please refer to [How to handle your internal business logic using ViewModel and UseCase to decouple the logic from UI module.]([https://medium.com/@lukohnam/how-to-share-communicate-events-independent-data-across-app-components-such-as-activities-353c96e32775](https://medium.com/@lukohnam/how-to-handle-your-internal-business-logic-using-viewmodel-and-usecase-to-decouple-the-logic-from-f20ee9f7e4a5))
+Please refer to [How to handle your internal business logic using ViewModel and UseCase to decouple the logic from UI module.](https://medium.com/@lukohnam/how-to-handle-your-internal-business-logic-using-viewmodel-and-usecase-to-decouple-the-logic-from-f20ee9f7e4a5)
 
 Now let’s dive into my open-source project, AdvancedAppArchitecture, which is based on LukohSplash & the Android MVVM with Clean Architecture and the latest libraries like Jetpack.
 And I'm learning Jetpack Compose and will apply it to AdvancedAppArchitecture.
