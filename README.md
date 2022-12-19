@@ -13,7 +13,7 @@
 
  AdvancedAppArchitecture is based on [LukohSplash](https://github.com/Lukoh/LukohSplash) & Android latest architectural components,Jetpack, and follows MVVM design pattern. Also AdvancedAppArchitecture App Architecture consist of Presentation layer, Domain layer and Repository layer. And new latest technologies were applied into AdvancedAppArchitecture App as Advanced Android App Architecture. The many advanced functions already were applied into LukohSplahs App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. And I'm also applying Kotlin Language into all modules in AdvancedAppArchitecture and almost codes are written with Kotlin. I'd like to help someone who are trying to learn Kotlin Language to apply Kotlin Language into their project.
  
- 
+![alt App Architecture](https://raw.githubusercontent.com/Lukoh/LukohSplash/main/Layer%20Communication.jpeg) 
 
 I was confident that I could develop high performance apps using Android architecture components and Kotlin Coroutine and Flow without using LiveData and RxJava, RxKotlin about a couple of months ago. And I proved it.
 
