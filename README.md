@@ -28,6 +28,8 @@ Please refer to [How to handle your internal business logic using ViewModel and 
 Now let’s dive into my open-source project, AdvancedAppArchitecture, which is based on LukohSplash & the Android MVVM with Clean Architecture and the latest libraries like Jetpack.
 And I'm learning Jetpack Compose and will apply it to AdvancedAppArchitecture.
 
+I'm happy to introdce the aritle, "Adding a domain layer", to add a Domain Layer. D It's very usefult to make Domain Layer in your project. [Adding a domain layer](https://medium.com/@donturner/adding-a-domain-layer-bc5a708a96da)
+
 Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into AdvancedAppArchitecture. Also visit my [LinkedIn profile](https://www.linkedin.com/in/lukoh-nam-68207941/?senderId=lukoh-nam-68207941) if you want to know more about me. Here is my email address below:
 
 lukoh.nam@gmail.com
