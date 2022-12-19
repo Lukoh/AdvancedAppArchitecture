@@ -12,12 +12,12 @@
 # AdvancedAppArchitecture
 
  AdvancedAppArchitecture is based on [LukohSplash](https://github.com/Lukoh/LukohSplash) & Android latest architectural components,Jetpack, and follows MVVM design pattern. Also AdvancedAppArchitecture App Architecture consist of Presentation layer, Domain layer and Repository layer. And new latest technologies were applied into AdvancedAppArchitecture App as Advanced Android App Architecture. The many advanced functions already were applied into LukohSplahs App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. And I'm also applying Kotlin Language into all modules in AdvancedAppArchitecture and almost codes are written with Kotlin. I'd like to help someone who are trying to learn Kotlin Language to apply Kotlin Language into their project.
- 
-![alt App Architecture](https://github.com/Lukoh/AdvancedAppArchitecture/blob/main/flow.png) 
 
 I was confident that I could develop high performance apps using Android architecture components and Kotlin Coroutine and Flow without using LiveData and RxJava, RxKotlin about a couple of months ago. And I proved it.
 
 Here are the effective ways to focus on your business logic & simplify modules & reduce the boiler-plate code & using the Module-Pattern(Called Module Pattern by Lukoh). A well-designed/implemented Mobile App using Module-Pattern(that is, well-designed App Architecture) can be extended to new apps faster and easier by applying/adapting new UI layouts and business logic. It helps you focus your business logic and create better services, and you can quickly deliver user-friendly features to your users.
+
+![alt App Architecture](https://github.com/Lukoh/AdvancedAppArchitecture/blob/main/flow.png) 
 
 Please refer to [LukohSplash](https://github.com/Lukoh/LukohSplash) & [Better Android Apps Using latest advanced Architecture](https://medium.com/oheadline/better-android-apps-using-mvvm-with-clean-architecture-2cc49e68f41d) & [How to focus effective business logic & implement more expandable & simplify modules & reduce the boiler-plate code using the Module-Pattern to make Android App.](https://medium.com/@lukohnam/how-to-focus-effective-business-logic-implement-more-expandable-simplify-modules-reduce-the-81ae1af23e4e)
 
