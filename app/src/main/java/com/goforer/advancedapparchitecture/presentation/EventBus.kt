@@ -1,6 +1,8 @@
 package com.goforer.advancedapparchitecture.presentation
 
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
@@ -25,7 +27,7 @@ open class EventBus<Data> : ViewModel() {
     private var sharedData: SharedFlow<Data>? = null
     private var job: Job? = null
 
-    internal fun post(data: Data, disposable: Boolean = true) {
+    internal fun post(lifecycle: Lifecycle, data: Data, disposable: Boolean = true) {
         val replayCount: Int
         val replayExpirationMills: Long
 
@@ -37,16 +39,16 @@ open class EventBus<Data> : ViewModel() {
             replayExpirationMills = java.lang.Long.MAX_VALUE
         }
 
-        sharedData = flowOf(data).shareIn(
+        sharedData = flowOf(data).flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).shareIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(0, replayExpirationMills),
             replay = replayCount
         )
     }
 
-    internal fun subscribe(isDisposable: Boolean = false, doOnResult: (data: Data) -> Unit) {
+    internal fun subscribe(lifecycle: Lifecycle, isDisposable: Boolean = false, doOnResult: (data: Data) -> Unit) {
         viewModelScope.launch {
-            sharedData?.collectLatest {
+            sharedData?.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)?.collectLatest {
                 doOnResult(it)
                 if (isDisposable)
                     sharedData = null
