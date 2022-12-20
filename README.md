@@ -8,7 +8,7 @@
 :eyeglasses: The  AdvancedAppArchitecture by open-source contributor, Lukoh.
 </p><br>
 
-![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%Advanced AppArchitecture%20%20&height=200&fontSize=100)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%AdvancedAppArchitecture%20%20&height=200&fontSize=100)
 # AdvancedAppArchitecture
 
  AdvancedAppArchitecture is based on [LukohSplash](https://github.com/Lukoh/LukohSplash) & Android latest architectural components,Jetpack, and follows MVVM design pattern. Also AdvancedAppArchitecture App Architecture consist of Presentation layer, Domain layer and Repository layer. And new latest technologies were applied into AdvancedAppArchitecture App as Advanced Android App Architecture. The many advanced functions already were applied into LukohSplahs App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. And I'm also applying Kotlin Language into all modules in AdvancedAppArchitecture and almost codes are written with Kotlin. I'd like to help someone who are trying to learn Kotlin Language to apply Kotlin Language into their project.
