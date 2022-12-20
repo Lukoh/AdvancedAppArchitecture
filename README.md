@@ -17,6 +17,8 @@ I was confident that I could develop high performance apps using Android archite
 
 Here are the effective ways to focus on your business logic & simplify modules & reduce the boiler-plate code & using the Module-Pattern(Called Module Pattern by Lukoh). A well-designed/implemented Mobile App using Module-Pattern(that is, well-designed App Architecture) can be extended to new apps faster and easier by applying/adapting new UI layouts and business logic. It helps you focus your business logic and create better services, and you can quickly deliver user-friendly features to your users.
 
+![alt App Architecture](https://github.com/Lukoh/AdvancedAppArchitecture/blob/main/flow.png) 
+
 Please refer to [LukohSplash](https://github.com/Lukoh/LukohSplash) & [Better Android Apps Using latest advanced Architecture](https://medium.com/oheadline/better-android-apps-using-mvvm-with-clean-architecture-2cc49e68f41d) & [How to focus effective business logic & implement more expandable & simplify modules & reduce the boiler-plate code using the Module-Pattern to make Android App.](https://medium.com/@lukohnam/how-to-focus-effective-business-logic-implement-more-expandable-simplify-modules-reduce-the-81ae1af23e4e)
 
 Please refer to [How to share/communicate events (independent data) across app components such as Activities, Fragments, Services, etc using ViewModel & SharedFlow.](https://medium.com/@lukohnam/how-to-share-communicate-events-independent-data-across-app-components-such-as-activities-353c96e32775)
@@ -27,6 +29,8 @@ Please refer to [How to handle your internal business logic using ViewModel and 
 
 Now let’s dive into my open-source project, AdvancedAppArchitecture, which is based on LukohSplash & the Android MVVM with Clean Architecture and the latest libraries like Jetpack.
 And I'm learning Jetpack Compose and will apply it to AdvancedAppArchitecture.
+
+I'm happy to introdce the aritle, "Adding a domain layer", to add a Domain Layer. D It's very usefult to make Domain Layer in your project. [Adding a domain layer](https://medium.com/@donturner/adding-a-domain-layer-bc5a708a96da)
 
 Please get in touch with me via email if you're interested in my technical experience and all techs which are applied into AdvancedAppArchitecture. Also visit my [LinkedIn profile](https://www.linkedin.com/in/lukoh-nam-68207941/?senderId=lukoh-nam-68207941) if you want to know more about me. Here is my email address below:
 
