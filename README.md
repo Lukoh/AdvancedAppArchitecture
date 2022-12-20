@@ -8,12 +8,12 @@
 :eyeglasses: The  AdvancedAppArchitecture by open-source contributor, Lukoh.
 </p><br>
 
-![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%LukohSplash%20%20&height=200&fontSize=100)
+![header](https://capsule-render.vercel.app/api?type=slice&color=gradient&text=%Advanced AppArchitecture%20%20&height=200&fontSize=100)
 # AdvancedAppArchitecture
 
  AdvancedAppArchitecture is based on [LukohSplash](https://github.com/Lukoh/LukohSplash) & Android latest architectural components,Jetpack, and follows MVVM design pattern. Also AdvancedAppArchitecture App Architecture consist of Presentation layer, Domain layer and Repository layer. And new latest technologies were applied into AdvancedAppArchitecture App as Advanced Android App Architecture. The many advanced functions already were applied into LukohSplahs App. These stuff make Android Apps to be extended being more competitive power and help them to maintain consistency. And I'm also applying Kotlin Language into all modules in AdvancedAppArchitecture and almost codes are written with Kotlin. I'd like to help someone who are trying to learn Kotlin Language to apply Kotlin Language into their project.
 
-I was confident that I could develop high performance apps using Android architecture components and Kotlin Coroutine and Flow without using LiveData and RxJava, RxKotlin about a couple of months ago. And I proved it.
+I was confident that I could develop high performance apps using Android architecture components and Kotlin Coroutine and Flow without using LiveData and RxJava, RxKotlin about a couple of years ago. And I proved it.
 
 Here are the effective ways to focus on your business logic & simplify modules & reduce the boiler-plate code & using the Module-Pattern(Called Module Pattern by Lukoh). A well-designed/implemented Mobile App using Module-Pattern(that is, well-designed App Architecture) can be extended to new apps faster and easier by applying/adapting new UI layouts and business logic. It helps you focus your business logic and create better services, and you can quickly deliver user-friendly features to your users.
 
