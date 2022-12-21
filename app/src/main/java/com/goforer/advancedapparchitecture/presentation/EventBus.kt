@@ -27,6 +27,25 @@ open class EventBus<Data> : ViewModel() {
     private var sharedData: SharedFlow<Data>? = null
     private var job: Job? = null
 
+    internal fun post(data: Data, disposable: Boolean = true) {
+        val replayCount: Int
+        val replayExpirationMills: Long
+
+        if (disposable) {
+            replayCount = 0
+            replayExpirationMills = 0
+        } else {
+            replayCount = 1
+            replayExpirationMills = java.lang.Long.MAX_VALUE
+        }
+
+        sharedData = flowOf(data).shareIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(0, replayExpirationMills),
+            replay = replayCount
+        )
+    }
+
     internal fun post(lifecycle: Lifecycle, data: Data, disposable: Boolean = true) {
         val replayCount: Int
         val replayExpirationMills: Long
@@ -39,16 +58,33 @@ open class EventBus<Data> : ViewModel() {
             replayExpirationMills = java.lang.Long.MAX_VALUE
         }
 
-        sharedData = flowOf(data).flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).shareIn(
+        sharedData = flowOf(data).flowWithLifecycle(lifecycle).shareIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(0, replayExpirationMills),
             replay = replayCount
         )
     }
 
-    internal fun subscribe(lifecycle: Lifecycle, isDisposable: Boolean = false, doOnResult: (data: Data) -> Unit) {
+    internal fun subscribe(
+        isDisposable: Boolean = false,
+        doOnResult: (data: Data) -> Unit
+    ) {
         viewModelScope.launch {
-            sharedData?.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)?.collectLatest {
+            sharedData?.collectLatest {
+                doOnResult(it)
+                if (isDisposable)
+                    sharedData = null
+            }
+        }
+    }
+
+    internal fun subscribe(
+        lifecycle: Lifecycle,
+        isDisposable: Boolean = false,
+        doOnResult: (data: Data) -> Unit
+    ) {
+        viewModelScope.launch {
+            sharedData?.flowWithLifecycle(lifecycle)?.collectLatest {
                 doOnResult(it)
                 if (isDisposable)
                     sharedData = null
