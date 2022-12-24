@@ -3,9 +3,9 @@ package com.goforer.advancedapparchitecture.data.source.network.response
 class Resource {
     private lateinit var status: Status
 
-    private var message: String? = null
+    internal var message: String? = null
 
-    private var data: Any? = null
+    internal var data: Any? = null
 
     internal var errorCode: Int = 0
 
@@ -72,8 +72,4 @@ class Resource {
 
         return this
     }
-
-    internal fun getMessage(): String? = message
-    internal fun getStatus(): Status = status
-    internal fun getData(): Any? = data
 }

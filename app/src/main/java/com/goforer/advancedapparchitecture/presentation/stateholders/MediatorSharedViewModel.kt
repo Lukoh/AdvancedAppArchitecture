@@ -6,13 +6,12 @@ import com.goforer.advancedapparchitecture.data.Params
 import com.goforer.advancedapparchitecture.data.source.network.response.Resource
 import com.goforer.advancedapparchitecture.data.source.network.response.Status
 import com.goforer.advancedapparchitecture.domain.RepoUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
-open class MediatorViewModel(val useCase: RepoUseCase, params: Params) : ViewModel() {
+open class MediatorSharedViewModel(private val useCase: RepoUseCase, params: Params) : ViewModel() {
     /*
-    val value = useCase.run(viewModelScope, params).flatMapLatest {
+   val value = useCase.run(viewModelScope, params).flatMapLatest {
         flow {
             emit(it)
         }
@@ -30,13 +29,15 @@ open class MediatorViewModel(val useCase: RepoUseCase, params: Params) : ViewMod
 
     fun invalidatePagingSource() = useCase.invalidatePagingSource()
 
-    private val _value = MutableStateFlow(Resource().loading(Status.LOADING))
+    private val _value = MutableSharedFlow<Resource>()
     val value = _value
 
     init {
         viewModelScope.launch {
+            Resource().loading(Status.LOADING)
             useCase.run(viewModelScope, params).collectLatest {
-                _value.value = it
+                it.loading(Status.LOADING)
+                value.emit(it)
             }
         }
     }
@@ -44,6 +45,6 @@ open class MediatorViewModel(val useCase: RepoUseCase, params: Params) : ViewMod
     override fun onCleared() {
         super.onCleared()
 
-        value.value = Resource().loading(Status.LOADING)
+        Resource().loading(Status.LOADING)
     }
 }
