@@ -34,9 +34,8 @@ open class MediatorSharedViewModel(private val useCase: RepoUseCase, params: Par
 
     init {
         viewModelScope.launch {
-            Resource().loading(Status.LOADING)
+            value.emit(Resource().loading(Status.LOADING))
             useCase.run(viewModelScope, params).collectLatest {
-                it.loading(Status.LOADING)
                 value.emit(it)
             }
         }
