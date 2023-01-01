@@ -1,9 +1,6 @@
 package com.goforer.advancedapparchitecture.presentation
 
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.job
@@ -59,7 +56,7 @@ open class EventBus<Data> : ViewModel() {
         }
 
         sharedData = flowOf(data).flowWithLifecycle(lifecycle).shareIn(
-            scope = viewModelScope,
+            scope = lifecycle.coroutineScope,
             started = SharingStarted.WhileSubscribed(0, replayExpirationMills),
             replay = replayCount
         )
