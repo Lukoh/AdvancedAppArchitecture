@@ -62,9 +62,9 @@ open class EventBus<Data> : ViewModel() {
         )
     }
 
-    internal fun subscribe(
+    internal inline fun subscribe(
         isDisposable: Boolean = false,
-        doOnResult: (data: Data) -> Unit
+        crossinline doOnResult: (data: Data) -> Unit
     ) {
         viewModelScope.launch {
             sharedData?.collectLatest {
@@ -75,10 +75,10 @@ open class EventBus<Data> : ViewModel() {
         }
     }
 
-    internal fun subscribe(
+    internal inline fun subscribe(
         lifecycle: Lifecycle,
         isDisposable: Boolean = false,
-        doOnResult: (data: Data) -> Unit
+        crossinline doOnResult: (data: Data) -> Unit
     ) {
         viewModelScope.launch {
             sharedData?.flowWithLifecycle(lifecycle)?.collectLatest {
