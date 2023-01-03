@@ -2,22 +2,42 @@ package com.goforer.base.extension
 
 import android.animation.AnimatorListenerAdapter
 import android.app.Dialog
+import android.content.Context
 import android.graphics.Color
+import android.graphics.Paint
+import android.graphics.Typeface
 import android.graphics.drawable.ColorDrawable
+import android.os.SystemClock
+import android.text.*
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
+import android.text.style.RelativeSizeSpan
+import android.text.style.UnderlineSpan
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
+import android.widget.EditText
 import android.widget.LinearLayout
+import android.widget.TextView
+
+class SafeClickListener(
+    private val interval: Long,
+    private inline val onSafeCLick: (View) -> Unit
+) : View.OnClickListener {
+    private var lastTimeClicked: Long = 0
+
+    override fun onClick(v: View) {
+        if (SystemClock.elapsedRealtime() - lastTimeClicked > interval) {
+            lastTimeClicked = SystemClock.elapsedRealtime()
+            onSafeCLick(v)
+        }
+    }
+}
 
 inline fun <reified T : ViewGroup.LayoutParams> View.layoutParams(block: T.() -> Unit) {
     if (layoutParams is T) block(layoutParams as T)
-}
-
-fun Window.setSystemBarTextWhite() {
-    val view = findViewById<View>(android.R.id.content)
-    val flags = view.systemUiVisibility
-    view.systemUiVisibility = flags and View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR.inv()
 }
 
 fun Window.setSystemBarTextDark() {
@@ -25,6 +45,7 @@ fun Window.setSystemBarTextDark() {
     val flags = view.systemUiVisibility
     view.systemUiVisibility = flags or View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
 }
+
 
 fun View.show(): View {
     if (visibility != View.VISIBLE) {
@@ -65,6 +86,117 @@ fun View.upShow(duration: Long = 500L) {
         .setListener(object : AnimatorListenerAdapter() {
         })
         .start()
+}
+
+/**
+ * Extension method to show a keyboard for View.
+ */
+fun View.showKeyboard() {
+    if (this.requestFocus()) {
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+    }
+}
+
+inline fun View.setSafeOnClickListener(interval: Long = 1200, crossinline onSafeClick: (View) -> Unit) {
+    val safeClickListener = SafeClickListener(interval = interval) {
+        onSafeClick(it)
+    }
+
+    setOnClickListener(safeClickListener)
+}
+
+fun TextView.setSpans(proportion: Float = 1.05F, spanMap: MutableMap<String, ClickableSpan>) {
+    val tvt = text.toString()
+    val ssb = SpannableStringBuilder(tvt)
+
+    spanMap.forEach {
+        val key = it.key
+        val value = it.value
+
+        if (tvt.contains(key, true)) {
+            val start = tvt.indexOf(key, 0, true)
+            val end = start + key.length
+
+            ssb.setSpan(value, start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+            ssb.setSpan(
+                RelativeSizeSpan(proportion),
+                start,
+                end,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+    }
+
+    setText(ssb, TextView.BufferType.SPANNABLE)
+    movementMethod = LinkMovementMethod.getInstance()
+}
+
+inline fun EditText.addAfterTextChangedListener(
+    filter: InputFilter? = null,
+    crossinline onTextChanged: (String) -> Unit
+) {
+    if (filter != null)
+        this.filters = arrayOf(filter)
+
+    addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            onTextChanged(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+    })
+}
+
+fun TextView.setTextUnderline() {
+    val content = SpannableString(this.text.toString())
+
+    content.setSpan(UnderlineSpan(), 0, content.length, 0)
+    this.text = content
+}
+
+fun getHighlightSpanMap(
+    textToHighlight: String,
+    color: Int?,
+    typeface: Typeface?,
+    isUnderlineText: Boolean,
+    bgColor: Int? = null,
+    textSize: Float? = null,
+    onClickListener: (textView: View) -> Unit
+): MutableMap<String, ClickableSpan> {
+    val clickableSpan = object : ClickableSpan() {
+        override fun onClick(textView: View) {
+            onClickListener(textView)
+        }
+
+        override fun updateDrawState(textPaint: TextPaint) {
+            super.updateDrawState(textPaint)
+
+            bgColor?.let {
+                textPaint.textAlign = Paint.Align.LEFT
+                textPaint.bgColor = it
+            }
+
+            textSize?.let {
+                textPaint.textSize = it
+            }
+
+            color?.let {
+                textPaint.color = it
+            }
+
+            typeface?.let {
+                textPaint.typeface = it
+            }
+
+            textPaint.isUnderlineText = isUnderlineText
+        }
+    }
+
+    return mutableMapOf(Pair(textToHighlight, clickableSpan))
 }
 
 fun Dialog.setDefaultWindowTheme() {
