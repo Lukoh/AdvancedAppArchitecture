@@ -20,7 +20,9 @@ import kotlinx.coroutines.flow.shareIn
 abstract class PagingDataMediator<Response> constructor(
     viewModelScope: CoroutineScope, private val enabledCache: Boolean
 ) {
-    private val resource = Resource()
+    private val resource by lazy {
+        Resource()
+    }
 
     internal val asSharedFlow = flow {
         emit(resource.loading(Status.LOADING))
