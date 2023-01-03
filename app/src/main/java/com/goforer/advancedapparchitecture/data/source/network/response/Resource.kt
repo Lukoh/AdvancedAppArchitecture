@@ -1,7 +1,7 @@
 package com.goforer.advancedapparchitecture.data.source.network.response
 
 class Resource {
-    private lateinit var status: Status
+    internal lateinit var status: Status
 
     internal var message: String? = null
 
