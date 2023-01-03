@@ -158,14 +158,14 @@ fun TextView.setTextUnderline() {
     this.text = content
 }
 
-fun getHighlightSpanMap(
+inline fun getHighlightSpanMap(
     textToHighlight: String,
     color: Int?,
     typeface: Typeface?,
     isUnderlineText: Boolean,
     bgColor: Int? = null,
     textSize: Float? = null,
-    onClickListener: (textView: View) -> Unit
+    crossinline onClickListener: (textView: View) -> Unit
 ): MutableMap<String, ClickableSpan> {
     val clickableSpan = object : ClickableSpan() {
         override fun onClick(textView: View) {
