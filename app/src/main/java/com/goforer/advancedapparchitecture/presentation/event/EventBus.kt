@@ -1,4 +1,4 @@
-package com.goforer.advancedapparchitecture.presentation
+package com.goforer.advancedapparchitecture.presentation.event
 
 import androidx.lifecycle.*
 import kotlinx.coroutines.Job
