@@ -18,7 +18,7 @@ import timber.log.Timber
  * Guide</a>.
  */
 abstract class DataMediator<Response> constructor(
-    viewModelScope: CoroutineScope, private val enabledCache: Boolean
+    viewModelScope: CoroutineScope, replyCount: Int, private val enabledCache: Boolean
 ) {
     private val resource by lazy {
         Resource()
@@ -52,7 +52,7 @@ abstract class DataMediator<Response> constructor(
     }.shareIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),
-        replay = 10
+        replay = replyCount
     )
 
     protected open suspend fun onNetworkError(errorMessage: String, errorCode: Int) {
