@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
 
 @OptIn(ExperimentalCoroutinesApi::class)
-open class ProcessorViewModel<Value>(useCase: UseCase<Value>, params: Params) : ViewModel() {
+open class ProcessorStateViewModel<Value>(useCase: UseCase<Value>, params: Params) : ViewModel() {
     private var initValue: Value? = null
 
     val value = useCase.run(viewModelScope, params).flatMapLatest {
