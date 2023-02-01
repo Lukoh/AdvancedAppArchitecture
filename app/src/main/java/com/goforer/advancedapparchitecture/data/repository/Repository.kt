@@ -26,7 +26,7 @@ abstract class Repository<Resource> {
         internal const val FIRST_PAGE = 1
     }
 
-    abstract fun handle(viewModelScope: CoroutineScope, query: Query): SharedFlow<Resource>
+    abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int, query: Query): SharedFlow<Resource>
 
     open fun invalidatePagingSource() {}
 

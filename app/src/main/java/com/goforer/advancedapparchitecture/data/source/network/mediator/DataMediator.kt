@@ -18,7 +18,7 @@ import timber.log.Timber
  * Guide</a>.
  */
 abstract class DataMediator<Response> constructor(
-    viewModelScope: CoroutineScope, replyCount: Int, private val enabledCache: Boolean
+    viewModelScope: CoroutineScope, replyCount: Int = 0, private val enabledCache: Boolean
 ) {
     private val resource by lazy {
         Resource()
