@@ -55,7 +55,7 @@ open class EventBus<Data> : ViewModel() {
             replayExpirationMills = java.lang.Long.MAX_VALUE
         }
 
-        sharedData = flowOf(data).flowWithLifecycle(lifecycle).shareIn(
+        sharedData = flowOf(data).flowWithLifecycle(lifecycle, Lifecycle.State.STARTED).shareIn(
             scope = lifecycle.coroutineScope,
             started = SharingStarted.WhileSubscribed(0, replayExpirationMills),
             replay = replayCount
@@ -81,7 +81,7 @@ open class EventBus<Data> : ViewModel() {
         crossinline doOnResult: (data: Data) -> Unit
     ) {
         viewModelScope.launch {
-            sharedData?.flowWithLifecycle(lifecycle)?.collectLatest {
+            sharedData?.flowWithLifecycle(lifecycle, Lifecycle.State.STARTED)?.collectLatest {
                 doOnResult(it)
                 if (isDisposable)
                     sharedData = null
