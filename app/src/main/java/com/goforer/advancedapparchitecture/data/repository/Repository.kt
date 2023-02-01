@@ -5,6 +5,7 @@ import com.goforer.advancedapparchitecture.data.source.network.NetworkErrorHandl
 import com.goforer.advancedapparchitecture.data.source.network.api.RestAPI
 import com.goforer.base.storage.Storage
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.SharedFlow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -26,7 +27,7 @@ abstract class Repository<Resource> {
         internal const val FIRST_PAGE = 1
     }
 
-    abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int, query: Query): SharedFlow<Resource>
+    abstract fun handle(viewModelScope: CoroutineScope, replyCount: Int, query: Query): Flow<Resource>
 
     open fun invalidatePagingSource() {}
 
