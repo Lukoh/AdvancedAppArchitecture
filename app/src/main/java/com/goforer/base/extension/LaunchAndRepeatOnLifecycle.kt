@@ -7,7 +7,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.CoroutineScope
 
-inline fun Fragment.launchAndRepeatWithViewLifecycle(
+inline fun Fragment.launchAndRepeatOnLifecycle(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline block: suspend CoroutineScope.() -> Unit
 ) {
@@ -18,7 +18,7 @@ inline fun Fragment.launchAndRepeatWithViewLifecycle(
     }
 }
 
-inline fun AppCompatActivity.launchAndRepeatWithViewLifecycle(
+inline fun AppCompatActivity.launchAndRepeatOnLifecycle(
     minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
     crossinline block: suspend CoroutineScope.() -> Unit
 ) {
