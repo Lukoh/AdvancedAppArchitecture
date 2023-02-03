@@ -19,8 +19,12 @@ import android.view.Window
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
+import com.amulyakhare.textdrawable.TextDrawable
+import com.goforer.fitpettest.R
 
 class SafeClickListener(
     private val interval: Long,
@@ -88,6 +92,18 @@ fun View.upShow(duration: Long = 500L) {
         .start()
 }
 
+fun View.setMargin(left: Int, top: Int, right: Int, bottom: Int) {
+    val params = this.layoutParams as ConstraintLayout.LayoutParams
+
+    params.setMargins(
+        left,
+        top,
+        right,
+        bottom
+    )
+    this.layoutParams = params
+}
+
 /**
  * Extension method to show a keyboard for View.
  */
@@ -99,12 +115,82 @@ fun View.showKeyboard() {
     }
 }
 
+/**
+ * Try to hide the keyboard and returns whether it worked
+ * https://stackoverflow.com/questions/1109022/close-hide-the-android-soft-keyboard
+ */
+fun View.hideKeyboard(): Boolean {
+    runCatching {
+        val inputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+
+        return inputMethodManager.hideSoftInputFromWindow(
+            windowToken,
+            InputMethodManager.HIDE_NOT_ALWAYS
+        )
+    }.onFailure { e ->
+        e.printStackTrace()
+    }
+
+    this.clearFocus()
+
+    return false
+}
+
 inline fun View.setSafeOnClickListener(interval: Long = 1200, crossinline onSafeClick: (View) -> Unit) {
     val safeClickListener = SafeClickListener(interval = interval) {
         onSafeClick(it)
     }
 
     setOnClickListener(safeClickListener)
+}
+
+fun ImageView.convertTextDrawable(
+    text: String,
+    textColor: Int,
+    height: Int,
+    width: Int,
+    isBold: Boolean,
+    fontSize: Int? = null,
+) {
+    fontSize.isNull({
+        val textDrawable = TextDrawable.builder()
+            .beginConfig()
+            .useFont(Typeface.create("sans-serif", Typeface.NORMAL))
+            .textColor(textColor)
+            .width(width)
+            .height(height)
+            .endConfig()
+            .buildRect(text, context.getColor(R.color.colorTransparent))
+
+        this.setImageDrawable(textDrawable)
+    }, {
+        if (isBold) {
+            val textDrawable = TextDrawable.builder()
+                .beginConfig()
+                .useFont(Typeface.create("sans-serif", Typeface.BOLD))
+                .fontSize(it)
+                .textColor(textColor)
+                .width(width)
+                .height(height)
+                .endConfig()
+                .buildRect(text, context.getColor(R.color.colorTransparent))
+
+            this.setImageDrawable(textDrawable)
+        } else {
+            val textDrawable = TextDrawable.builder()
+                .beginConfig()
+                .useFont(Typeface.create("sans-serif", Typeface.NORMAL))
+                .fontSize(it)
+                .textColor(textColor)
+                .width(width)
+                .height(height)
+                .endConfig()
+                .buildRect(text, context.getColor(R.color.colorTransparent))
+
+            this.setImageDrawable(textDrawable)
+        }
+    })
 }
 
 fun TextView.setSpans(proportion: Float = 1.05F, spanMap: MutableMap<String, ClickableSpan>) {
