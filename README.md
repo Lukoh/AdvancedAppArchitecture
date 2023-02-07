@@ -19,6 +19,16 @@ Here are the effective ways to focus on your business logic & simplify modules &
 
 ![alt App Architecture](https://github.com/Lukoh/AdvancedAppArchitecture/blob/main/flow.png) 
 
+# Benefits of Architecture
+Having a good Architecture implemented in your app brings a lot of benefits to the project and engineering teams:
+
+It improves the maintainability, quality and robustness of the overall app.
+It allows the app to scale. More people and more teams can contribute to the same codebase with minimal code conflicts.
+It helps with onboarding. As Architecture brings consistency to your project, new members of the team can quickly get up to speed and be more efficient in less amount of time.
+It is easier to test. A good Architecture encourages simpler types which are generally easier to test.
+Bugs can be investigated methodically with well defined processes.
+Investing in Architecture also has a direct impact in your users. They benefit from a more stable application, and more features due to a more productive engineering team. However, Architecture also requires an up-front time investment.
+
 Please refer to [LukohSplash](https://github.com/Lukoh/LukohSplash) & [Better Android Apps Using latest advanced Architecture](https://medium.com/oheadline/better-android-apps-using-mvvm-with-clean-architecture-2cc49e68f41d) & [How to focus effective business logic & implement more expandable & simplify modules & reduce the boiler-plate code using the Module-Pattern to make Android App.](https://medium.com/@lukohnam/how-to-focus-effective-business-logic-implement-more-expandable-simplify-modules-reduce-the-81ae1af23e4e)
 
 Please refer to [How to share/communicate events (independent data) across app components such as Activities, Fragments, Services, etc using ViewModel & SharedFlow.](https://medium.com/@lukohnam/how-to-share-communicate-events-independent-data-across-app-components-such-as-activities-353c96e32775)
